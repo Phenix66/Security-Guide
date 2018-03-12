@@ -7,7 +7,7 @@ Get-AppxPackage -AllUsers | where {$.name -notlike "calc" -AND $.name -notlike "
 Remove-Service -Name "DiagTrack"
 Remove-Service -Name "dmwappushservice"
 Out-File -filepath C:\ProgramData\Microsoft\Diagnosis ETLLogsAutoLogger\AutoLogger-Diagtrack-Listener.etl
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Value "0"
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Value 0
 
 # Place entries into the hosts file to block known MS telemetry URLs
 $hosts = @(
