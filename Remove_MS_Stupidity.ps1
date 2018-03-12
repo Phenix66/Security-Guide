@@ -3,10 +3,11 @@
 # Remove all "Apps". Retains Calc and the core Store functionality
 Get-AppxPackage -AllUsers | where {$.name -notlike "calc" -AND $.name -notlike "store" -AND $.name -notlike "onenote" -AND $.name -notlike "NET." -AND $.name -notlike "VCLibs" -AND $.name -notlike "Host" -AND $_.name -notlike "AccountsControl"} | Remove-AppxPackage
 
-# Delete telemetry services
+# Disable telemetry services
 Remove-Service -Name "DiagTrack"
 Remove-Service -Name "dmwappushservice"
 Out-File -filepath C:\ProgramData\Microsoft\Diagnosis ETLLogsAutoLogger\AutoLogger-Diagtrack-Listener.etl
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Value "0"
 
 # Place entries into the hosts file to block known MS telemetry URLs
 $hosts = @(
