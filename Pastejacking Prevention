@@ -19,3 +19,4 @@ IE:
 
 Chrome:
 -Requires extension, no known method of disabling clipboard events.
+-Right-to-Copy extension allows you copy ONLY what is selected, but requires you to right-click -> Copy instead of using Ctrl+C shortcut
