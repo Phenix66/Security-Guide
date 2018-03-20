@@ -43,3 +43,6 @@ If ($Input -eq "0" -or $Input -eq "full"){
 } ElseIf ($Input -eq "1" -or $Input -eq "constrained"){
     write-host "constrained"
 }
+
+# Sets PowerShell so scripts cannot be ran, interactive mode only
+Set-ExecutionPolicy Restricted
