@@ -1,6 +1,7 @@
 <#
 Windows PowerShell is an extremely powerful utility built into all distributions of Windows 7/2008 R2 and later.
 Because of this, it has became a popular tool among attackers and can be very dangerous if not properly secured.
+Good reference: https://adsecurity.org/?p=2604
 #>
 
 # Check for admin
