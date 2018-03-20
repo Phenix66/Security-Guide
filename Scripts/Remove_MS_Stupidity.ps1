@@ -1,3 +1,9 @@
+<#
+Microsoft has built in several "features" that will collect data on user behavior.
+This script attempts to disable as many of these "features" as possible, but updates will sometimes re-enable "features".
+My recommendation is to run this script after first install, then use O&O ShutUp on a regular basis to check configuration.
+#>
+
 # Check for admin
 function Test-IsAdmin { 
 ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator") 
