@@ -1,4 +1,14 @@
-# Run this script as admin
+# Check for admin
+function Test-IsAdmin { 
+([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator") 
+} 
+
+# Exit the script if it is not running under admin rights
+If (!(Test-ISAdmin)){
+  Write-Host "This script must be ran as admin. Please re-run from an admin PowerShell session"
+  $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+  exit
+}
 
 # Remove all "Apps". Retains Calc and the core Store functionality
 Get-AppxPackage -AllUsers | where {$.name -notlike "calc" -AND $.name -notlike "store" -AND $.name -notlike "onenote" -AND $.name -notlike "NET." -AND $.name -notlike "VCLibs" -AND $.name -notlike "Host" -AND $_.name -notlike "AccountsControl"} | Remove-AppxPackage
