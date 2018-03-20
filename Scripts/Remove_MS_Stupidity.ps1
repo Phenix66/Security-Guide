@@ -11,9 +11,9 @@ function Test-IsAdmin {
 
 # Exit the script if it is not running under admin rights
 If (!(Test-ISAdmin)){
-  Write-Host "This script must be ran as admin. Please re-run from an admin PowerShell session"
-  $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
-  exit
+    Write-Host "This script must be ran as admin. Please re-run from an admin PowerShell session"
+    $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+    exit
 }
 
 # Remove all "Apps". Retains Calc and the core Store functionality
