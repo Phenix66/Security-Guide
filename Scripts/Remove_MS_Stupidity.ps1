@@ -17,11 +17,17 @@ If (!(Test-ISAdmin)){
 }
 
 # Remove all "Apps". Retains Calc and the core Store functionality
-Get-AppxPackage -AllUsers | where {$.name -notlike "calc" -AND $.name -notlike "store" -AND $.name -notlike "onenote" -AND $.name -notlike "NET." -AND $.name -notlike "VCLibs" -AND $.name -notlike "Host" -AND $_.name -notlike "AccountsControl"} | Remove-AppxPackage
+Write-Host "Removing bloatware..."
+Get-AppxPackage -AllUsers | Where-Object {$_.name -notlike "calc" -AND $_.name -notlike "store" -AND $_.name -notlike "onenote" -AND $_.name -notlike "NET." -AND $_.name -notlike "VCLibs" -AND $_.name -notlike "Host" -AND $_.name -notlike "AccountsControl"} | Remove-AppxPackage
 
 # Disable telemetry services
-Remove-Service -Name "DiagTrack"
-Remove-Service -Name "dmwappushservice"
+Write-Host "Nuking Microsoft spy services..."
+If ( Get-Service "DiagTrack") {
+    sc.exe delete "DiagTrack"
+}
+If ( Get-Service "dmwappushservice") {
+    sc.exe delete "dmwappushservice"
+}
 Out-File -filepath C:\ProgramData\Microsoft\Diagnosis ETLLogsAutoLogger\AutoLogger-Diagtrack-Listener.etl
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Value 0
 
