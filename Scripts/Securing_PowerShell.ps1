@@ -21,6 +21,7 @@ If PowerShell V2 is installed, remove it. This prevents downgrade attacks.
 As of the Windows 10 Fall Creators update, PowerShell V2 is considered deprecated and was later updated
 to remove the files necessary to renable, effectively disabling it altogether.
 #>
+Write-Host "Disabling PowerShell V2 if enabled..."
 $x = Get-WindowsOptionalFeature -Online -FeatureName MicrosoftWindowsPowerShellV2
 If ($x.State -eq "Enabled"){
     Disable-WindowsOptionalFeature -Online -FeatureName MicrosoftWindowsPowerShellV2
@@ -30,7 +31,7 @@ If ($x.State -eq "Enabled"){
 $Input = Read-Host @"
 PowerShell Language Modes:
 0 - Full
-1 - Constrained (Prevents most API calls and COM access)
+1 - Constrained (Prevents most API calls and COM access, use if you only need simple scripting)
 Please enter the desired PowerShell language mode
 "@
 
@@ -39,11 +40,14 @@ While ("0","1","full","constrained" -notcontains $Input)
     $Input = Read-Host "Invalid option, please enter 0 or 1 to proceed"
 }
 
-If ($Input -eq "0" -or $Input -eq "full"){
-    write-host "full"
-} ElseIf ($Input -eq "1" -or $Input -eq "constrained"){
-    write-host "constrained"
+If ($Input -eq "1" -or $Input -eq "constrained"){
+    [Environment]::SetEnvironmentVariable('__PSLockdownPolicy', '4', 'Machine')
 }
 
 # Sets PowerShell so scripts cannot be ran, interactive mode only
+Write-Host "Setting execution policy to restricted (prevents auto script running)..."
 Set-ExecutionPolicy Restricted
+
+Write-Host "Done."`n
+Write-Host "Press any key to exit..."
+$x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
