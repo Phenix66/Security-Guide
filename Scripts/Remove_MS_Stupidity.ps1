@@ -43,6 +43,7 @@ If ( Get-Service "DiagTrack") {
 If ( Get-Service "dmwappushservice") {
     sc.exe delete "dmwappushservice"
 }
+force-mkdir "C:\ProgramData\Microsoft\Diagnosis ETLLogsAutoLogger"
 Out-File -filepath C:\ProgramData\Microsoft\Diagnosis ETLLogsAutoLogger\AutoLogger-Diagtrack-Listener.etl
 force-mkdir "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection"
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Value 0
