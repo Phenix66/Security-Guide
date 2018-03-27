@@ -26,9 +26,9 @@ function force-mkdir($path) {
 
 # Remove all "Apps". Retains Calc and the core Store functionality
 Write-Host "Removing bloatware..."
-Get-AppxPackage -AllUsers | Where-Object {$_.name -notlike "calc" -AND $_.name -notlike "store" -AND $_.name `
-    -notlike "onenote" -AND $_.name -notlike "NET." -AND $_.name -notlike "VCLibs" -AND $_.name -notlike "Host" `
-    -AND $_.name -notlike "AccountsControl"} | Remove-AppxPackage
+Get-AppxPackage -AllUsers | Where-Object {$_.name -notlike "*calc*" -AND $_.name -notlike "*store*" -AND $_.name `
+    -notlike "*onenote*" -AND $_.name -notlike "*NET.*" -AND $_.name -notlike "*VCLibs*" -AND $_.name -notlike "*Host*" `
+    -AND $_.name -notlike "*AccountsControl*"} | Remove-AppxPackage
 
 # Disables the downloading of updates from other PCs
 Write-Host "Disabling Windows Update Peer-2-Peer behavior..."
