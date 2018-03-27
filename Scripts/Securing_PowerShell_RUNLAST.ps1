@@ -17,7 +17,7 @@ If (!(Test-ISAdmin)){
 }
 
 <# 
-If PowerShell V2 is installed, remove it. This prevents downgrade attacks.
+If PowerShell V2 is installed, remove it. This prevents *most* downgrade attacks.
 As of the Windows 10 Fall Creators update, PowerShell V2 is considered deprecated and was later updated
 to remove the files necessary to renable, effectively disabling it altogether.
 #>
@@ -31,7 +31,7 @@ If ($x.State -eq "Enabled"){
 $Input = Read-Host @"
 PowerShell Language Modes:
 0 - Full
-1 - Constrained (Prevents most API calls and COM access, use if you only need simple scripting)
+1 - Constrained (Prevents most API calls and COM access, recommended)
 Please enter the desired PowerShell language mode
 "@
 
@@ -44,7 +44,8 @@ If ($Input -eq "1" -or $Input -eq "constrained"){
     [Environment]::SetEnvironmentVariable('__PSLockdownPolicy', '4', 'Machine')
 }
 
-# Sets PowerShell so scripts cannot be ran, interactive mode only
+# Sets PowerShell so scripts cannot be ran, interactive mode only. 
+# Granted it's easy to bypass with -ep, but this will at least make it harder
 Write-Host "Setting execution policy to restricted (prevents auto script running)..."
 Set-ExecutionPolicy Restricted
 
