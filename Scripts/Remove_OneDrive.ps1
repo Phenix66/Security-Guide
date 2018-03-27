@@ -4,8 +4,22 @@ https://github.com/W4RH4WK/Debloat-Windows-10/blob/master/scripts/remove-onedriv
 This script will remove and disable OneDrive integration.
 #>
 
-Import-Module -DisableNameChecking $PSScriptRoot\..\lib\force-mkdir.psm1
-Import-Module -DisableNameChecking $PSScriptRoot\..\lib\take-own.psm1
+function force-mkdir($path) {
+    if (!(Test-Path $path)) {
+        #Write-Host "-- Creating full path to: " $path -ForegroundColor White -BackgroundColor DarkGreen
+        New-Item -ItemType Directory -Force -Path $path
+    }
+}
+
+function Takeown-Folder($path) {
+    Takeown-File $path
+    foreach ($item in Get-ChildItem $path) {
+        if (Test-Path $item -PathType Container) {
+            Takeown-Folder $item.FullName
+        } else {
+        }
+    }
+}
 
 Write-Output "Kill OneDrive process"
 taskkill.exe /F /IM "OneDrive.exe"
