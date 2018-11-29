@@ -1,4 +1,6 @@
-What is it: Allows a website to copy custom text/code to the clipboard when the user copies something else from the site. Commonly used when the content being copied is intended to be pasted into a command window or text editor such as VIM that would support commands/macros.
+What is it: Allows a website to copy custom text/code to the clipboard when the user copies something else from the site. 
+   Commonly used when the content being copied is intended to be pasted into a command window or text editor such as VIM 
+   that would support commands/macros.
 
 Good PoC website:
 https://securelayer7.net/lab/pastejacking.html
@@ -7,7 +9,9 @@ More in-depth read:
 https://nakedsecurity.sophos.com/2016/05/26/why-you-cant-trust-things-you-cut-and-paste-from-web-pages/
 
 "But I already use a script blocker?"
-Doesn't seem to make a difference in my experience. Pastejacking relys on "Clipboard events" that can run without Javascript being enabled if it was placed in the CSS code. Please note, you SHOULD be running a script blocker, some pastejacking does occur in Javascript and therefore would not be prevented via these methods.
+Doesn't seem to make a difference in my experience. Pastejacking relys on "Clipboard events" that can run without Javascript 
+  being enabled if it was placed in the CSS code. Please note, you SHOULD be running a script blocker, some pastejacking does 
+  occur in Javascript and therefore would not be prevented via these methods.
 
 
 Firefox:
