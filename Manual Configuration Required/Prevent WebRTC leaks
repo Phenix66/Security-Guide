@@ -1,5 +1,5 @@
 What it is: WebRTC can leak your true IP address even when utilizing a VPN
 
 Firefox:
--about:config
--Set "media.peerconnection.enabled" to false
+1) Navigate to "about:config"
+2) Set "media.peerconnection.enabled" to "false"
