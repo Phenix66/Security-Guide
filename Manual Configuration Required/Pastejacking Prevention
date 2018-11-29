@@ -15,8 +15,8 @@ Doesn't seem to make a difference in my experience. Pastejacking relys on "Clipb
 
 
 Firefox:
--Navigate to about:config
--Set "dom.event.clipboardevents.enabled" to false
+1) Navigate to "about:config"
+2) Set "dom.event.clipboardevents.enabled" to "false"
 
 IE:
 -Tested with IE 11.1066.14393.0 on Windows 10 and it inherently blocked the attempt. Way to go MS for actually getting something right!
