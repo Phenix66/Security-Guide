@@ -1,0 +1,14 @@
+What is it: Domain names can use international characters that look like other English characters. Used commonly on phishing sites to further trick a user into thinking they are on a legimate site. Displaying all domains in their "punycode" equivalents however prevents this entirely.
+
+In-depth reads:
+https://krebsonsecurity.com/2018/03/look-alike-domains-and-visual-confusion/
+
+Browsers that show punycode by default:
+Chrome
+Safari
+Internet Explorer
+Edge
+
+Mozilla Firefox:
+1) Navigate to "about:config"
+2) Set "network.IDN_show_punycode" to "true"
